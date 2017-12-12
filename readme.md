@@ -1,58 +1,84 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+## About TinyUrl
 
-## About Laravel
+Basic functionality for implementing a "URL Shortener". 
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+- A user should be able to place in a long URL and submit.
+- It should store the long version of the URL, and generate a short URL for the user.
+- All subsequent requests to the short URL should send the user to the long URL by some manner of redirect.
+- Using Laravel Framework.
+- Using MySQL DB
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### 1. Environment Setup
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications.
+Create User
 
-## Learning Laravel
+`$ adduser tinyurl`
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of any modern web application framework, making it a breeze to get started learning the framework.
+Switch users
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 1100 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
+`$ su tinyurl`
 
-## Laravel Sponsors
+Create Project Folder
 
-We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](http://patreon.com/taylorotwell):
+`$ mkdir /webrootpath/tinyurl`
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Pulse Storm](http://www.pulsestorm.net/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
+Set Ownership
 
-## Contributing
+`$ chown -R tinyurl:www-data /webrootpath/loopgyros`
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+`$ chmod 2750 /webrootpath/tinyurl`
 
-## Security Vulnerabilities
+Go to directory
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+`$ cd /webrootpath/tinyurl`
 
-## License
+Clone your repo
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+`$ git clone https://github.com/ohdavey/tinyurl.git .`
+
+### 2. Create Database
+
+Open mysql connection
+
+`$ mysql -u root -p`
+
+Copy and Paste MySQL Statement below*
+
+```
+CREATE DATABASE `your_db` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ;
+GRANT ALL PRIVILEGES ON `your_db`.* TO `your_user`@localhost IDENTIFIED BY 'PASSWORD';
+GRANT SELECT,LOCK TABLES on `your_db`.* TO `your_db`backup@localhost IDENTIFIED BY 'PASSWORD';
+FLUSH PRIVILEGES;
+```
+
+### 3. DEPLOY
+
+Copy Virtual Host
+
+`$ cp /path/to/your/tinyurl.conf /etc/apache2/sites-available/tinyurl.conf`
+
+
+Enable Site
+
+`$ a2ensite tinyurl`
+
+Restart Server
+
+`$ service apache2 restart`
+
+
+### 4. Configure Project Setting Files
+
+Go to Project root
+
+`$ cd /webrootpath/tinyurl`
+
+Configure your .env file
+
+`$ cp .env.example`
+
+Edit and apply your configurations.
+
+`$ vi .env`
+
