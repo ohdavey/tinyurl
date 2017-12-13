@@ -14,3 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/tinyurl', 'TinyUrlController@store');
+Route::get('/url/{code}', 'TinyUrlController@show');
+Route::get('/{code}', 'TinyUrlController@redirect');
