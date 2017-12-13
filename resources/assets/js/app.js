@@ -15,8 +15,11 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+Vue.component('tinyurl', require('./components/TinyUrl.vue'));
+import Vue from 'vue';
+import VeeValidate from 'vee-validate';
 
+Vue.use(VeeValidate);
 const app = new Vue({
     el: '#app'
 });
