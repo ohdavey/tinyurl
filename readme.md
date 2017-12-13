@@ -1,13 +1,16 @@
 
 ## About TinyUrl
 
-Basic functionality for implementing a "URL Shortener". 
+Basic functionality for implementing a "URL Shortener".
 
 - A user should be able to place in a long URL and submit.
 - It should store the long version of the URL, and generate a short URL for the user.
 - All subsequent requests to the short URL should send the user to the long URL by some manner of redirect.
 - Using Laravel Framework.
 - Using MySQL DB
+
+
+Live Demo: http://drupey.com/
 
 ### 1. Environment Setup
 
@@ -25,7 +28,7 @@ Create Project Folder
 
 Set Ownership
 
-`$ chown -R tinyurl:www-data /webrootpath/loopgyros`
+`$ chown -R tinyurl:www-data /webrootpath/tinyurl`
 
 `$ chmod 2750 /webrootpath/tinyurl`
 
